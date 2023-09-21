@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
 });
 //post
 router.post("/", (req, res) => {
+  console.log(req.params);
   const item = req.body;
   console.log("Adding item", item);
   let sqlText = `INSERT INTO "items" ("name", "quantity", "unit")
