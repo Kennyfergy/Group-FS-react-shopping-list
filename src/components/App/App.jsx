@@ -92,7 +92,11 @@ function App() {
         addItem={addItem}
       />
       <main>
-        <ShoppingList items={itemList} markAsPurchased={markAsPurchased} />
+        <ShoppingList
+          items={itemList}
+          markAsPurchased={markAsPurchased}
+          deleteItem={deleteItem}
+        />
       </main>
     </div>
   );
