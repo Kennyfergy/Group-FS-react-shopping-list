@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "../Header/Header.jsx";
 import "./App.css";
 import Form from "../Form/Form.jsx";
+import Buttons from "../Buttons/Buttons.jsx";
 
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
@@ -12,6 +13,7 @@ function App() {
   const [newItemName, setNewItemName] = useState("");
   const [newItemQuantity, setNewItemQuantity] = useState("");
   const [newItemUnit, setNewItemUnit] = useState("");
+
   // const [newItem, setNewItem] = useState({ name: "", quantity: 0, unit: "" });
 
   useEffect(() => {
@@ -78,6 +80,8 @@ function App() {
       });
   };
 
+  // completedkey ? display something : do nothing
+
   return (
     <div className="App">
       <Header />
@@ -99,6 +103,7 @@ function App() {
           // clearTable={clearTable}
           // resetItems={resetItems}
         />
+        <Buttons Buttons={Buttons} />
       </main>
     </div>
   );

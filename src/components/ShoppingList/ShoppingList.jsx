@@ -32,10 +32,10 @@ export default function ShoppingList({
       <thead>
         <tr>
           <th>Shopping List</th>
-          <th>
-            {/* <button onClick={() => resetItems}>Reset</button>
-            <button onClick={() => clearTable}>Clear</button> */}
-          </th>
+          {/* <th> */}
+          {/* <button onClick={() => resetItems}>Reset</button> */}
+          {/* <button onClick={() => clearTable}>Delete list</button> */}
+          {/* </th> */}
         </tr>
       </thead>
       <tbody>
