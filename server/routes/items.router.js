@@ -71,4 +71,34 @@ router.delete("/:id", (req, res) => {
     });
 });
 
+//put route for reset
+
+router.put("/", (req, res) => {
+  const queryText = `UPDATE "items" SET "completed"='FALSE';`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      console.log("update all to false worked");
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log("error updating to false", error);
+      res.sendStatus(500);
+    });
+});
+
+//delete route for clear
+router.delete("/", (req, res) => {
+  const sqlText = 'DELETE FROM "items";';
+  pool
+    .query(sqlText)
+    .then((response) => {
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log("error deleting all items", err);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
