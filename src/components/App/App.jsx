@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../Header/Header.jsx";
 import "./App.css";
+import Form from "../Form/Form.jsx";
+import ShoppingListItem from "../ShoppingListItem/ShoppingListItem.jsx";
+import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
 function App() {
   const [itemList, setItemList] = useState([]);
-  const [newItemName, setNewItemName] = useState('');
-  const [newItemQuantity, setNewItemQuantity] = useState('');
-  const [newItemUnit, setNewItemUnit] = useState('');
+  const [newItemName, setNewItemName] = useState("");
+  const [newItemQuantity, setNewItemQuantity] = useState("");
+  const [newItemUnit, setNewItemUnit] = useState("");
   // const [newItem, setNewItem] = useState({ name: "", quantity: 0, unit: "" });
 
   useEffect(() => {
@@ -16,41 +19,47 @@ function App() {
     getItems();
   }, []);
 
-
   const getItems = () => {
-    axios.get('/items')
-      .then(response => {
+    axios
+      .get("/items")
+      .then((response) => {
         setItemList(response.data);
       })
-      .catch(err => {
-        alert('Error getting items');
+      .catch((err) => {
+        alert("Error getting items");
         console.log(err);
       });
   };
 
   const addItem = () => {
-    axios.post('/items', { name: newItemName, quantity: newItemQuantity, unit: newItemUnit })
-      .then(response => {
+    axios
+      .post("/items", {
+        name: newItemName,
+        quantity: newItemQuantity,
+        unit: newItemUnit,
+      })
+      .then((response) => {
         // Clear inputs
-        setNewItemName('');
-        setNewItemQuantity('');
-        setNewItemUnit('');
-        
+        setNewItemName("");
+        setNewItemQuantity("");
+        setNewItemUnit("");
+
         getItems();
       })
-      .catch(err => {
-        alert('Error Adding Item');
+      .catch((err) => {
+        alert("Error Adding Item");
         console.log(err);
       });
   };
 
   const markAsPurchased = (id) => {
-    axios.put(`/items/${id}`)
-      .then(response => {
+    axios
+      .put(`/items/${id}`)
+      .then((response) => {
         getItems(); // Refresh the list after updating
       })
-      .catch(err => {
-        alert('Error Marking Item as Purchased');
+      .catch((err) => {
+        alert("Error Marking Item as Purchased");
         console.log(err);
       });
   };
@@ -60,14 +69,24 @@ function App() {
     if (newItemName && newItemQuantity) {
       addItem();
     } else {
-      alert('The new item needs both a name and a quantity!');
+      alert("The new item needs both a name and a quantity!");
     }
   };
 
   return (
     <div className="App">
       <Header />
+      <Form
+        setNewItemName={setNewItemName}
+        setNewItemQuantity={setNewItemQuantity}
+        setNewItemUnit={setNewItemUnit}
+        newItemName={newItemName}
+        newItemQuantity={newItemQuantity}
+        newItemUnit={newItemUnit}
+      />
       <main>
+        <ShoppingList items={itemList} />
+
         <p>Under Construction...</p>
       </main>
     </div>
