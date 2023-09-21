@@ -1,46 +1,51 @@
 import React from "react";
 
-export default function Form() {
+export default function Form({
   //const [itemList, setItemList] = useState([]);
-  const [newItemName, setNewItemName] = useState("");
-  const [newItemQuantity, setNewItemQuantity] = useState("");
-  const [newItemUnit, setNewItemUnit] = useState("");
+  newItemName,
+  setNewItemName,
+  newItemQuantity,
+  setNewItemQuantity,
+  newItemUnit,
+  setNewItemUnit,
+  handleSubmit,
+}) {
+  //   //const [itemList, setItemList] = useState([]);
+  //   const [newItemName, setNewItemName] = useState("");
+  //   const [newItemQuantity, setNewItemQuantity] = useState("");
+  //   const [newItemUnit, setNewItemUnit] = useState("");
 
   const clearInputFields = () => {
     setNewItemName({ name: "" });
     setNewItemQuantity({ quantity: "" });
     setNewItemUnit({ unit: "" });
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (newItemName && newItemQuantity) {
-      addItem();
-      clearInputFields;
-    } else {
-      alert("The new item needs both a name and a quantity!");
-    }
-  };
+  //   const handleSubmit = (event) => {
+  //     event.preventDefault();
+  //     if (newItemName && newItemQuantity) {
+  //       addItem();
+  //       clearInputFields;
+  //     } else {
+  //       alert("The new item needs both a name and a quantity!");
+  //     }
+  //   };
   return (
     <form onSubmit={handleSubmit}>
       <input
-        onChange={(event) =>
-          setNewItemName({ newItemName: event.target.value })
-        }
-        value={setNewItemName.name}
+        onChange={(event) => setNewItemName({ name: event.target.value })}
+        value={newItemName}
         placeholder="Item Name"
       />
       <input
         onChange={(event) =>
-          setNewItemQuantity({ newItemQuantity: event.target.value })
+          setNewItemQuantity({ quantity: event.target.value })
         }
-        value={setNewItemQuantity.quantity}
+        value={newItemQuantity}
         placeholder="Quantity"
       />
       <input
-        onChange={(event) =>
-          setNewItemUnit({ newItemUnit: event.target.value })
-        }
-        value={setNewItemUnit.unit}
+        onChange={(event) => setNewItemUnit({ unit: event.target.value })}
+        value={newItemUnit}
         placeholder="Price"
       />
       <input type="submit" value="Submit" />
