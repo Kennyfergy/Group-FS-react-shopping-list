@@ -4,7 +4,7 @@ import axios from "axios";
 import Header from "../Header/Header.jsx";
 import "./App.css";
 import Form from "../Form/Form.jsx";
-import ShoppingListItem from "../ShoppingListItem/ShoppingListItem.jsx";
+
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
         unit: newItemUnit,
       })
       .then((response) => {
+        console.log("in axios post", response);
         // Clear inputs
         setNewItemName("");
         setNewItemQuantity("");
@@ -64,14 +65,17 @@ function App() {
       });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (newItemName && newItemQuantity) {
-      addItem();
-    } else {
-      alert("The new item needs both a name and a quantity!");
-    }
-  };
+  const deleteItem = (id) => {
+    axios.delete(`/items/${id}`)
+        .then(response => {
+            // Refresh the student list
+            getItems();  
+        })
+        .catch(err => {
+            alert('Error deleting items');
+            console.log(err);
+        })
+}
 
   return (
     <div className="App">
@@ -83,6 +87,8 @@ function App() {
         newItemName={newItemName}
         newItemQuantity={newItemQuantity}
         newItemUnit={newItemUnit}
+        // handleSubmit={handleSubmit}
+        addItem={addItem}
       />
       <main>
         <ShoppingList items={itemList} markAsPurchased={markAsPurchased} />

@@ -1,4 +1,4 @@
-import ShoppingListItem from "../ShoppingListItem/ShoppingListItem"
+import ShoppingListItem from "../ShoppingListItem/ShoppingListItem";
 
 export default function ShoppingList({items, resetItems, clearTable}) {
     return(
