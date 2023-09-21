@@ -65,6 +65,18 @@ function App() {
       });
   };
 
+  const deleteItem = (id) => {
+    axios.delete(`/items/${id}`)
+        .then(response => {
+            // Refresh the student list
+            getItems();  
+        })
+        .catch(err => {
+            alert('Error deleting items');
+            console.log(err);
+        })
+}
+
   return (
     <div className="App">
       <Header />
