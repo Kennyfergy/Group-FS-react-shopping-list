@@ -7,14 +7,22 @@ export default function Form({
   setNewItemQuantity,
   newItemUnit,
   setNewItemUnit,
-  handleSubmit,
+  addItem,
+  //   handleSubmit,
 }) {
   const clearInputFields = () => {
     setNewItemName({ name: "" });
     setNewItemQuantity({ quantity: "" });
     setNewItemUnit({ unit: "" });
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (newItemName && newItemQuantity) {
+      addItem();
+    } else {
+      alert("The new item needs a name, quantity, and price!");
+    }
+  };
   return (
     <form onSubmit={handleSubmit}>
       <input

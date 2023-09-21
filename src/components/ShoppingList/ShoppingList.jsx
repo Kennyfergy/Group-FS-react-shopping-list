@@ -6,6 +6,7 @@ export default function ShoppingList({ items }) {
       <thead>
         <tr>
           <th>Shopping List</th>
+
           <th>
             <button type="reset">Reset</button>
             <button type="clear">Clear</button>
@@ -13,9 +14,11 @@ export default function ShoppingList({ items }) {
         </tr>
       </thead>
       <tbody>
-        {items.map((item) => (
-          <ShoppingListItem key={item.id} item={item} />
-        ))}
+        <th>
+          {items.map((item) => (
+            <ShoppingListItem key={item.id} item={item} />
+          ))}
+        </th>
       </tbody>
     </table>
   );
