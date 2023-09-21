@@ -85,7 +85,7 @@ function App() {
         newItemUnit={newItemUnit}
       />
       <main>
-        <ShoppingList items={itemList} />
+        <ShoppingList items={itemList} markAsPurchased={markAsPurchased} />
 
         <p>Under Construction...</p>
       </main>

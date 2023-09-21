@@ -1,12 +1,13 @@
 import ShoppingListItem from "../ShoppingListItem/ShoppingListItem"
 
-export default function ShoppingList({items}) {
+export default function ShoppingList({items, resetItems, clearTable}) {
     return(
         <table>
             <thead>
                 <tr>
                     <th>Shopping List</th>
-                    <th><button type="reset">Reset</button><button type="clear">Clear</button></th>
+                    <th><button onClick={()=> resetItems}>Reset</button>
+                    <button onClick={()=> clearTable}>Clear</button></th>
                 </tr>
             </thead>
             <tbody>
