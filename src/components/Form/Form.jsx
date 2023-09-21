@@ -46,7 +46,8 @@ export default function Form({
       <input
         onChange={(event) => setNewItemUnit({ unit: event.target.value })}
         value={newItemUnit}
-        placeholder="Price"
+        placeholder="Unit"
+        type="text"
       />
       <input type="submit" value="Submit" />
     </form>

@@ -22,8 +22,8 @@ export default function ShoppingList({items, resetItems, clearTable}) {
 }
 export default function ShoppingList({
   items,
-  resetItems,
-  clearTable,
+  //   resetItems,
+  //   clearTable,
   deleteItem,
   markAsPurchased,
 }) {
@@ -33,8 +33,8 @@ export default function ShoppingList({
         <tr>
           <th>Shopping List</th>
           <th>
-            <button onClick={() => resetItems}>Reset</button>
-            <button onClick={() => clearTable}>Clear</button>
+            {/* <button onClick={() => resetItems}>Reset</button>
+            <button onClick={() => clearTable}>Clear</button> */}
           </th>
         </tr>
       </thead>
