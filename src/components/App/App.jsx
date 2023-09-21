@@ -4,7 +4,7 @@ import axios from "axios";
 import Header from "../Header/Header.jsx";
 import "./App.css";
 import Form from "../Form/Form.jsx";
-import ShoppingListItem from "../ShoppingListItem/ShoppingListItem.jsx";
+
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
 function App() {
