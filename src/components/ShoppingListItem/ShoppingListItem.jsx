@@ -1,13 +1,13 @@
-export default function ShoppingListItem({ item }) {
+export default function ShoppingListItem({ item, markAsPurchased, deleteItem }) {
   return (
     <tr>
-      <td>{item.name}</td>
+      <td>{item?.name}</td>
       <td>
-        {item.quantity} {item.unit}
+        {item?.quantity} {item?.unit}
       </td>
       <td>
-        <button type="buy">Buy</button>
-        <button type="delete">Remove</button>
+        <button onClick={()=> markAsPurchased(item.id)}>Buy</button>
+        <button onClick={() => deleteItem(item.id)}>Remove</button>
       </td>
     </tr>
   );

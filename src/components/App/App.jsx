@@ -91,7 +91,11 @@ function App() {
         addItem={addItem}
       />
       <main>
-        <ShoppingList items={itemList} />
+
+        <ShoppingList items={itemList} markAsPurchased={markAsPurchased} />
+
+        <p>Under Construction...</p>
+
       </main>
     </div>
   );
