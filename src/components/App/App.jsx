@@ -96,6 +96,8 @@ function App() {
           items={itemList}
           markAsPurchased={markAsPurchased}
           deleteItem={deleteItem}
+          // clearTable={clearTable}
+          // resetItems={resetItems}
         />
       </main>
     </div>
