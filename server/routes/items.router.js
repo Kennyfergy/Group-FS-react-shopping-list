@@ -17,18 +17,17 @@ router.get("/", (req, res) => {
 });
 //post
 router.post("/", (req, res) => {
-  console.log(req.params);
   const item = req.body;
   console.log("Adding item", item);
-  let sqlText = `INSERT INTO "items" ("name", "quantity", "unit")
-                    VALUES($1, $2, $3)`;
+  let sqlText = `INSERT INTO "items" ("name", "quantity", "unit", "completed")
+                    VALUES($1, $2, $3, $4);`;
 
   if (!item.name || !item.quantity) {
     res.sendStatus(400);
     return;
   }
   pool
-    .query(sqlText, [item.name, item.quantity, item.unit])
+    .query(sqlText, [item.name, item.quantity, item.unit, item.completed])
     .then((result) => {
       res.sendStatus(201);
     })
