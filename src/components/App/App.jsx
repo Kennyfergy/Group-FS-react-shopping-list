@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "../Header/Header.jsx";
 import "./App.css";
 import Form from "../Form/Form.jsx";
+import Buttons from "../Buttons/Buttons.jsx";
 
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
@@ -12,6 +13,7 @@ function App() {
   const [newItemName, setNewItemName] = useState("");
   const [newItemQuantity, setNewItemQuantity] = useState("");
   const [newItemUnit, setNewItemUnit] = useState("");
+
   // const [newItem, setNewItem] = useState({ name: "", quantity: 0, unit: "" });
 
   useEffect(() => {
@@ -88,6 +90,7 @@ function App() {
         console.log('Error in clearing table', err);
       })
   }
+
   
   const resetItems = () => {
     axios
@@ -97,6 +100,8 @@ function App() {
       })
       .catch((err) => {
         alert("Error resetting items");
+
+        alert("Error Marking Item as Purchased");
         console.log(err);
       });
   };
@@ -125,6 +130,8 @@ function App() {
       </main>
     </div>
   );
+
 }
+
 
 export default App;
