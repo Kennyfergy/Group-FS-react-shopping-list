@@ -12,13 +12,15 @@ INSERT INTO "items" ("name", "quantity", "unit", "completed")
 VALUES 
 ('Milk', '1', 'Gallon', true),
 ('Donuts', '7', 'Dozen', false), ('Apples', '4', 'Bag', false);
--- It is also helpful to include some test data
+
+
+-- ~~~~~~~~~~~~~ TEST DATA BELOW  ~~~~~~~~~~~~~
 
 --test the delete:
 DELETE FROM "items" WHERE "id" = 4;
 
 --test the Get:
-SELECT * FROM "items" ORDER By "name" ASC;
+SELECT * FROM "items" ORDER BY "completed" DESC, "name" ASC;
 
 --test the Put:
 UPDATE "items" SET "completed" = 'true' WHERE "id" ='1';
