@@ -50,11 +50,11 @@ export default function ShoppingList({
           />
         ))}
       </div>
-      {confirmationBox && (
+        {confirmationBox && (
         <div className="confirmationContainer">
             {confirmationBox}
         </div>
-)}
+        )}
 
     </div>
   );

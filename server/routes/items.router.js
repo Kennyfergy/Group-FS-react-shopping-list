@@ -37,6 +37,21 @@ router.post("/", (req, res) => {
       res.sendStatus(500);
     });
 });
+// Reset purchased status for all items
+router.put('/reset', (req, res) => {
+  const sqlText = `UPDATE "items" SET "completed" = 'false';`;
+
+  pool
+      .query(sqlText)
+      .then((response) => {
+          console.log('All items reset successfully');
+          res.sendStatus(204);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
+});
 
 //put
 router.put("/:id", (req, res) => {
@@ -52,6 +67,22 @@ router.put("/:id", (req, res) => {
     .catch((error) => {
       console.log(`Error making database query ${sqlText}`, error);
     });
+});
+
+// Clear all items from the list
+router.delete('/clear', (req, res) => {
+  const sqlText = `DELETE FROM "items";`;
+
+  pool
+      .query(sqlText)
+      .then((result) => {
+          console.log('All items deleted successfully');
+          res.sendStatus(204);
+      })
+      .catch((err) => {
+          console.log('Error in clear request', err);
+          res.sendStatus(500);
+      });
 });
 
 //delete
@@ -70,35 +101,7 @@ router.delete("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
-// Reset purchased status for all items
-router.put('/reset', (req, res) => {
-  const sqlText = `UPDATE "items" SET "completed" = 'false';`;
 
-  pool
-      .query(sqlText)
-      .then((response) => {
-          console.log('All items reset successfully');
-          res.sendStatus(204);
-      })
-      .catch((error) => {
-          console.log(`Error making database query ${sqlText}`, error);
-          res.sendStatus(500);
-      });
-});
 
-// Clear all items from the list
-router.delete('/clear', (req, res) => {
-  const sqlText = `DELETE FROM "items";`;
 
-  pool
-      .query(sqlText)
-      .then((result) => {
-          console.log('All items deleted successfully');
-          res.sendStatus(204);
-      })
-      .catch((err) => {
-          console.log('Error in clear request', err);
-          res.sendStatus(500);
-      });
-});
 module.exports = router;
