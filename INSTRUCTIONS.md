@@ -63,7 +63,7 @@ The `Reset` button should clear the purchased status from all items, allowing th
 |X|- Improve the styling of the page
 |X|- When items are purchased, grey them out.
 |X|- Make the buttons more UX friendly. For example, red for remove, but green or blue for save & buy.
-||- Add a icons to improve the display, for example a check mark for purchased, a trash can for remove, etc. (Check out [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react).)
+|X|- Add a icons to improve the display, for example a check mark for purchased, a trash can for remove, etc. (Check out [Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react).)
 
 ||- Currently, if you typo something, it must be removed and re-added to fix it. An edit feature would be a great enhancement. Add an `Edit` button which will have the existing data show in the input form at the top of the page to allow an easier edit.
 

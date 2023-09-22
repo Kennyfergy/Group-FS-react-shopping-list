@@ -43,21 +43,20 @@ router.post("/", (req, res) => {
 });
 
 // Reset purchased status for all items
-router.put('/reset', (req, res) => {
+router.put("/reset", (req, res) => {
   const sqlText = `UPDATE "items" SET "completed" = 'false';`;
 
   pool
-      .query(sqlText)
-      .then((response) => {
-          console.log('All items reset successfully');
-          res.sendStatus(204);
-      })
-      .catch((error) => {
-          console.log(`Error making database query ${sqlText}`, error);
-          res.sendStatus(500);
-      });
+    .query(sqlText)
+    .then((response) => {
+      console.log("All items reset successfully");
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
 });
-
 
 //put route to update an individual item with id number
 router.put("/update/:id", (req, res) => {
@@ -81,19 +80,19 @@ router.put("/update/:id", (req, res) => {
 });
 
 // Clear all items from the list
-router.delete('/clear', (req, res) => {
+router.delete("/clear", (req, res) => {
   const sqlText = `DELETE FROM "items";`;
 
   pool
-      .query(sqlText)
-      .then((result) => {
-          console.log('All items deleted successfully');
-          res.sendStatus(204);
-      })
-      .catch((err) => {
-          console.log('Error in clear request', err);
-          res.sendStatus(500);
-      });
+    .query(sqlText)
+    .then((result) => {
+      console.log("All items deleted successfully");
+      res.sendStatus(204);
+    })
+    .catch((err) => {
+      console.log("Error in clear request", err);
+      res.sendStatus(500);
+    });
 });
 
 //delete
@@ -145,5 +144,20 @@ router.delete("/clear", (req, res) => {
     });
 });
 
+router.put("/edit/:id", (req, res) => {
+  const id = req.params.id;
+  const item = req.body;
+  const sqlText = `UPDATE "items" SET "name" = $1, "quantity" = $2, "unit" = $3 WHERE "id" = $4;`;
+
+  pool
+    .query(sqlText, [item.name, item.quantity, item.unit, id])
+    .then((response) => {
+      console.log(`Edited item with id ${id}`);
+      res.sendStatus(204);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+    });
+});
 
 module.exports = router;

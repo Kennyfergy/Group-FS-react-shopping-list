@@ -1,18 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import "./Form.css";
 export default function Form({
-  newItemName,
-  setNewItemName,
-  newItemQuantity,
-  setNewItemQuantity,
-  newItemUnit,
-  setNewItemUnit,
   // handleSubmit,
   addItem,
 }) {
+  const [newItemName, setNewItemName] = useState("");
+  const [newItemQuantity, setNewItemQuantity] = useState("");
+  const [newItemUnit, setNewItemUnit] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    addItem({ newItemName, newItemQuantity, newItemUnit });
+    setNewItemName("");
+    setNewItemQuantity("");
+    setNewItemUnit("");
+    addItem(newItemName, newItemQuantity, newItemUnit);
 
     // //ternary check if inputs are empty
     // !newItemName || !newItemQuantity || !newItemUnit
@@ -57,7 +58,7 @@ export default function Form({
         onChange={(event) => setNewItemQuantity(event.target.value)}
         value={newItemQuantity}
         placeholder="Quantity"
-        type="text"
+        type="number"
         required
       />
       <input

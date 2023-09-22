@@ -5,19 +5,22 @@ import Header from "../Header/Header.jsx";
 import "./App.css";
 import Form from "../Form/Form.jsx";
 import Buttons from "../Buttons/Buttons.jsx";
+import EditForm from "../Edit/EditForm.jsx";
 
 import ShoppingList from "../ShoppingList/ShoppingList.jsx";
 
 function App() {
   const [itemList, setItemList] = useState([]);
-  const [newItemName, setNewItemName] = useState("");
-  const [newItemQuantity, setNewItemQuantity] = useState("");
-  const [newItemUnit, setNewItemUnit] = useState("");
+  const [editingItem, setEditingItem] = useState(null);
 
   useEffect(() => {
     // Fetch items from the server here
     getItems();
   }, []);
+
+  function editModeTrue() {
+    setEditMode(true);
+  }
 
   // function to get the items from the database and display on DOM
   const getItems = () => {
@@ -33,7 +36,7 @@ function App() {
   }; //end getItems
 
   //function to add an item to the shopping list
-  const addItem = () => {
+  const addItem = (newItemName, newItemQuantity, newItemUnit) => {
     axios
       .post("/items", {
         name: newItemName,
@@ -43,10 +46,23 @@ function App() {
       .then((response) => {
         console.log("in axios post", response);
         // Clear inputs
-        setNewItemName("");
-        setNewItemQuantity("");
-        setNewItemUnit("");
 
+        getItems();
+      })
+      .catch((err) => {
+        alert("Error Adding Item");
+        console.log(err);
+      });
+  }; //end addItem
+
+  const editItem = (itemId, name, quantity, unit) => {
+    axios
+      .put(`/items/edit/${itemId}`, {
+        name: name,
+        quantity: quantity,
+        unit: unit,
+      })
+      .then((response) => {
         getItems();
       })
       .catch((err) => {
@@ -114,12 +130,6 @@ function App() {
     <div className="App">
       <Header />
       <Form
-        setNewItemName={setNewItemName}
-        setNewItemQuantity={setNewItemQuantity}
-        setNewItemUnit={setNewItemUnit}
-        newItemName={newItemName}
-        newItemQuantity={newItemQuantity}
-        newItemUnit={newItemUnit}
         // handleSubmit={handleSubmit}
         addItem={addItem}
       />
@@ -130,7 +140,14 @@ function App() {
           deleteItem={deleteItem}
           clearTable={clearTable}
           resetItems={resetItems}
+          setEditingItem={setEditingItem}
         />
+        {editingItem !== null && (
+          <EditForm editingItem={editingItem} editItem={editItem} />
+        )}
+        {/* <button>
+          <EditForm />
+        </button> */}
       </main>
     </div>
   );
