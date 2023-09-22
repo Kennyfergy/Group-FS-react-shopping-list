@@ -1,11 +1,11 @@
 # React Shopping List
+
 ## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Collaborators](#collaborators)
-
 
 ## Overview
 
@@ -23,6 +23,8 @@ React Shopping List is a user-friendly shopping list application built with Reac
 
 - **Clear List**: Start fresh by clearing all items from the shopping list.
 
+- **Edit List**: When edit button is clicked, can change the values for each input
+
 ## Getting Started
 
 ### Prerequisites
@@ -31,17 +33,16 @@ React Shopping List is a user-friendly shopping list application built with Reac
 - [PostgreSQL](https://www.postgresql.org/download/)
 
 ## Installation
+
 1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/Kennyfergy/Group-FS-react-shopping-list.git
-    ```
+   ```bash
+   git clone https://github.com/Kennyfergy/Group-FS-react-shopping-list.git
+   ```
 2. Create a database named `shopping_list`,
 3. The queries in the `tables.sql` file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. We recommend using Postico to run those queries as that was used to create the queries,
 4. Navigate to the project directory and run `npm install` to install required packages,
 5. Run `npm run server` to start the server,
 6. In another terminal, run `npm run client` to start the React application. This will automatically open a new browser tab pointing to the client.
-
-
 
 ## Collaborators
 
@@ -50,6 +51,3 @@ This project was a collaborative effort. Special thanks to:
 - [Kennyfergy](https://github.com/Kennyfergy)
 - [ssaid20](https://github.com/ssaid20)
 - [jcolago](https://github.com/jcolago)
-
-
-
