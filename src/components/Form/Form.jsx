@@ -14,10 +14,10 @@ export default function Form({
     event.preventDefault();
     addItem({ newItemName, newItemQuantity, newItemUnit });
 
-    //ternary check if inputs are empty
-    !newItemName || !newItemQuantity || !newItemUnit
-      ? alert("Please fill in item name, quantity, and units")
-      : alert("Item added");
+    // //ternary check if inputs are empty
+    // !newItemName || !newItemQuantity || !newItemUnit
+    //   ? alert("Please fill in item name, quantity, and units")
+    //   : alert("Item added");
   };
 
   //checking that inputs are not too long and alerting if it is too long
@@ -50,12 +50,12 @@ export default function Form({
         onChange={(event) => setNewItemName(event.target.value)}
         value={newItemName}
         placeholder="Item Name"
-        required
       />
       <input
         onChange={(event) => setNewItemQuantity(event.target.value)}
         value={newItemQuantity}
         placeholder="Quantity"
+        type="text"
         required
       />
       <input
@@ -63,6 +63,7 @@ export default function Form({
         value={newItemUnit}
         placeholder="Unit"
         type="text"
+        required
       />
       <input type="submit" value="Submit" />
     </form>
