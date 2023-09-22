@@ -14,13 +14,12 @@ function App() {
   const [newItemQuantity, setNewItemQuantity] = useState("");
   const [newItemUnit, setNewItemUnit] = useState("");
 
-  // const [newItem, setNewItem] = useState({ name: "", quantity: 0, unit: "" });
-
   useEffect(() => {
     // Fetch items from the server here
     getItems();
   }, []);
 
+  // function to get the items from the database and display on DOM
   const getItems = () => {
     axios
       .get("/items")
@@ -31,8 +30,9 @@ function App() {
         alert("Error getting items");
         console.log(err);
       });
-  };
+  }; //end getItems
 
+  //function to add an item to the shopping list
   const addItem = () => {
     axios
       .post("/items", {
@@ -53,11 +53,12 @@ function App() {
         alert("Error Adding Item");
         console.log(err);
       });
-  };
+  }; //end addItem
 
+  //function to change purchase state to completed, or Purchased on the DOM
   const markAsPurchased = (id) => {
     axios
-      .put(`/items/${id}`)
+      .put(`/items/update/${id}`)
       .then((response) => {
         getItems(); // Refresh the list after updating
       })
@@ -65,11 +66,12 @@ function App() {
         alert("Error Marking Item as Purchased");
         console.log(err);
       });
-  };
+  }; //end markAsPurchased
 
+  //function to delete individual item from list
   const deleteItem = (id) => {
     axios
-      .delete(`/items/${id}`)
+      .delete(`/items/delete/${id}`)
       .then((response) => {
         // Refresh the student list
         getItems();
@@ -78,8 +80,9 @@ function App() {
         alert("Error deleting items");
         console.log(err);
       });
-  };
+  }; // end deleteItem
 
+  //function to delete all items in the shopping list, but not delete the database
   const clearTable = () => {
     axios
       .delete(`/items/clear`)
@@ -87,16 +90,17 @@ function App() {
         getItems();
       })
       .catch((err) => {
-        console.log('Error in clearing table', err);
-      })
-  }
+        console.log("Error in clearing table", err);
+      });
+  }; // clearTable
 
-  
+  //function to reset the purchased state to false
   const resetItems = () => {
     axios
       .put(`/items/reset`)
       .then((response) => {
         getItems(); // Refresh the list after updating
+        console.log("resetItems");
       })
       .catch((err) => {
         alert("Error resetting items");
@@ -104,7 +108,7 @@ function App() {
         alert("Error Marking Item as Purchased");
         console.log(err);
       });
-  };
+  }; //end resetItems
 
   return (
     <div className="App">
@@ -130,8 +134,6 @@ function App() {
       </main>
     </div>
   );
-
 }
-
 
 export default App;
