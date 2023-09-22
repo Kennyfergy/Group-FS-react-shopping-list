@@ -14,11 +14,6 @@ export default function Form({
     setNewItemQuantity("");
     setNewItemUnit("");
     addItem(newItemName, newItemQuantity, newItemUnit);
-
-    // //ternary check if inputs are empty
-    // !newItemName || !newItemQuantity || !newItemUnit
-    //   ? alert("Please fill in item name, quantity, and units")
-    //   : alert("Item added");
   };
 
   //checking that inputs are not too long and alerting if it is too long

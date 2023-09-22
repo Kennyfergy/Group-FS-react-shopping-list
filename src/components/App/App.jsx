@@ -129,10 +129,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Form
-        // handleSubmit={handleSubmit}
-        addItem={addItem}
-      />
+      <Form addItem={addItem} />
       <main>
         <ShoppingList
           items={itemList}
@@ -145,9 +142,6 @@ function App() {
         {editingItem !== null && (
           <EditForm editingItem={editingItem} editItem={editItem} />
         )}
-        {/* <button>
-          <EditForm />
-        </button> */}
       </main>
     </div>
   );

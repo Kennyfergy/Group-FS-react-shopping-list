@@ -40,7 +40,3 @@ export default function ShoppingListItem({
     </div>
   );
 }
-
-{
-  /* <FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#d05249",}} /> */
-}
