@@ -50,6 +50,8 @@ export default function Form({
         onChange={(event) => setNewItemName(event.target.value)}
         value={newItemName}
         placeholder="Item Name"
+        type="text"
+        required
       />
       <input
         onChange={(event) => setNewItemQuantity(event.target.value)}
