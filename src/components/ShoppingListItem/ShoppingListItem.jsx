@@ -1,5 +1,7 @@
 import "./ShoppingListItem.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
 export default function ShoppingListItem({
   item,
   markAsPurchased,
@@ -16,13 +18,24 @@ export default function ShoppingListItem({
         {item.completed ? (
           <span className="purchased-label">Purchased</span>
         ) : (
-          <button className="purchase-btn" onClick={() => markAsPurchased(item.id)}>Purchase</button>
+          <button
+            className="purchase-btn"
+            onClick={() => markAsPurchased(item.id)}
+          >
+            <FontAwesomeIcon
+              icon={faClipboardCheck}
+              className="clipboard-icon"
+            />
+          </button>
         )}
-        <button className="delete-btn" onClick={() => deleteItem(item.id)}>Remove</button>
+        <button className="delete-btn" onClick={() => deleteItem(item.id)}>
+          <FontAwesomeIcon icon={faTrash} className="trash-icon" />
+        </button>
       </div>
     </div>
   );
 }
 
-
-
+{
+  /* <FontAwesomeIcon icon="fa-solid fa-trash" style={{color: "#d05249",}} /> */
+}
