@@ -69,35 +69,37 @@ router.delete("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+// Reset purchased status for all items
+router.put('/reset', (req, res) => {
+  const sqlText = `UPDATE "items" SET "completed" = 'false';`;
 
-//put route for reset
 
-router.put("/", (req, res) => {
-  const queryText = `UPDATE "items" SET "completed"='FALSE';`;
   pool
-    .query(queryText)
-    .then((result) => {
-      console.log("update all to false worked");
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log("error updating to false", error);
-      res.sendStatus(500);
-    });
+      .query(sqlText)
+      .then((response) => {
+          console.log('All items reset successfully');
+          res.sendStatus(204);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
 });
 
-//delete route for clear
-router.delete("/", (req, res) => {
-  const sqlText = 'DELETE FROM "items";';
+// Clear all items from the list
+router.delete('/clear', (req, res) => {
+  const sqlText = `DELETE FROM "items";`;
+
   pool
-    .query(sqlText)
-    .then((response) => {
-      res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.log("error deleting all items", err);
-      res.sendStatus(500);
-    });
+      .query(sqlText)
+      .then((result) => {
+          console.log('All items deleted successfully');
+          res.sendStatus(204);
+      })
+      .catch((err) => {
+          console.log('Error in clear request', err);
+          res.sendStatus(500);
+      });
 });
 
 module.exports = router;

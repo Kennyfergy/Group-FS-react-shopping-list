@@ -82,55 +82,56 @@ function App() {
 
   const clearTable = () => {
     axios
-      .delete(`/items/`)
+      .delete(`/items/clear`)
       .then((response) => {
-        getItems()
+        getItems();
       })
       .catch((err) => {
         console.log('Error in clearing table', err);
       })
   }
 
+  
   const resetItems = () => {
     axios
-      .put(`/items/`)
+      .put(`/items/reset`)
       .then((response) => {
         getItems(); // Refresh the list after updating
       })
       .catch((err) => {
+        alert("Error resetting items");
+
         alert("Error Marking Item as Purchased");
         console.log(err);
       });
   };
 
-}
-// completedkey ? display something : do nothing
-
-return (
-  <div className="App">
-    <Header />
-    <Form
-      setNewItemName={setNewItemName}
-      setNewItemQuantity={setNewItemQuantity}
-      setNewItemUnit={setNewItemUnit}
-      newItemName={newItemName}
-      newItemQuantity={newItemQuantity}
-      newItemUnit={newItemUnit}
-      // handleSubmit={handleSubmit}
-      addItem={addItem}
-    />
-    <main>
-      <ShoppingList
-        items={itemList}
-        markAsPurchased={markAsPurchased}
-        deleteItem={deleteItem}
-        clearTable={clearTable}
-        resetItems={resetItems}
+  return (
+    <div className="App">
+      <Header />
+      <Form
+        setNewItemName={setNewItemName}
+        setNewItemQuantity={setNewItemQuantity}
+        setNewItemUnit={setNewItemUnit}
+        newItemName={newItemName}
+        newItemQuantity={newItemQuantity}
+        newItemUnit={newItemUnit}
+        // handleSubmit={handleSubmit}
+        addItem={addItem}
       />
-      <Buttons Buttons={Buttons} />
-    </main>
-  </div>
-);
+      <main>
+        <ShoppingList
+          items={itemList}
+          markAsPurchased={markAsPurchased}
+          deleteItem={deleteItem}
+          clearTable={clearTable}
+          resetItems={resetItems}
+        />
+      </main>
+    </div>
+  );
+
+}
 
 
 export default App;
