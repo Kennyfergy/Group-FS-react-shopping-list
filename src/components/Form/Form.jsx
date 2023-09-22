@@ -1,50 +1,46 @@
 import React from "react";
-import "./Form.css"
+import "./Form.css";
 export default function Form({
-  //const [itemList, setItemList] = useState([]);
   newItemName,
   setNewItemName,
   newItemQuantity,
   setNewItemQuantity,
   newItemUnit,
   setNewItemUnit,
-  handleSubmit,
+  // handleSubmit,
+  addItem,
 }) {
-  //   //const [itemList, setItemList] = useState([]);
-  //   const [newItemName, setNewItemName] = useState("");
-  //   const [newItemQuantity, setNewItemQuantity] = useState("");
-  //   const [newItemUnit, setNewItemUnit] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    addItem({ newItemName, newItemQuantity, newItemUnit });
 
+    //ternary check if inputs are empty
+    !newItemName || !newItemQuantity || !newItemUnit
+      ? alert("Please fill in item name, quantity, and units")
+      : alert("Item added");
+  };
+
+  //function to clear input fields, being called on submit
   const clearInputFields = () => {
     setNewItemName({ name: "" });
     setNewItemQuantity({ quantity: "" });
     setNewItemUnit({ unit: "" });
   };
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     if (newItemName && newItemQuantity) {
-  //       addItem();
-  //       clearInputFields;
-  //     } else {
-  //       alert("The new item needs both a name and a quantity!");
-  //     }
-  //   };
+  // console.log(newItemName, newItemQuantity, newItemUnit);
   return (
     <form onSubmit={handleSubmit}>
       <input
-        onChange={(event) => setNewItemName({ name: event.target.value })}
+        onChange={(event) => setNewItemName(event.target.value)}
         value={newItemName}
         placeholder="Item Name"
       />
       <input
-        onChange={(event) =>
-          setNewItemQuantity({ quantity: event.target.value })
-        }
+        onChange={(event) => setNewItemQuantity(event.target.value)}
         value={newItemQuantity}
         placeholder="Quantity"
       />
       <input
-        onChange={(event) => setNewItemUnit({ unit: event.target.value })}
+        onChange={(event) => setNewItemUnit(event.target.value)}
         value={newItemUnit}
         placeholder="Unit"
         type="text"
