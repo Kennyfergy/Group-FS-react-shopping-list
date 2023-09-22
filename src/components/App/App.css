@@ -2,3 +2,6 @@ main {
   width: 90%;
   margin: auto;
 }
+body{
+  background: linear-gradient(to right, #e8d8d8, #9198e5);
+}

@@ -17,18 +17,17 @@ router.get("/", (req, res) => {
 });
 //post
 router.post("/", (req, res) => {
-  console.log(req.params);
   const item = req.body;
   console.log("Adding item", item);
-  let sqlText = `INSERT INTO "items" ("name", "quantity", "unit")
-                    VALUES($1, $2, $3)`;
+  let sqlText = `INSERT INTO "items" ("name", "quantity", "unit", "completed")
+                    VALUES($1, $2, $3, $4);`;
 
   if (!item.name || !item.quantity) {
     res.sendStatus(400);
     return;
   }
   pool
-    .query(sqlText, [item.name, item.quantity, item.unit])
+    .query(sqlText, [item.name, item.quantity, item.unit, item.completed])
     .then((result) => {
       res.sendStatus(201);
     })
@@ -70,35 +69,37 @@ router.delete("/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+// Reset purchased status for all items
+router.put('/reset', (req, res) => {
+  const sqlText = `UPDATE "items" SET "completed" = 'false';`;
 
-//put route for reset
 
-router.put("/", (req, res) => {
-  const queryText = `UPDATE "items" SET "completed"='FALSE';`;
   pool
-    .query(queryText)
-    .then((result) => {
-      console.log("update all to false worked");
-      res.sendStatus(200);
-    })
-    .catch((error) => {
-      console.log("error updating to false", error);
-      res.sendStatus(500);
-    });
+      .query(sqlText)
+      .then((response) => {
+          console.log('All items reset successfully');
+          res.sendStatus(204);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
 });
 
-//delete route for clear
-router.delete("/", (req, res) => {
-  const sqlText = 'DELETE FROM "items";';
+// Clear all items from the list
+router.delete('/clear', (req, res) => {
+  const sqlText = `DELETE FROM "items";`;
+
   pool
-    .query(sqlText)
-    .then((response) => {
-      res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.log("error deleting all items", err);
-      res.sendStatus(500);
-    });
+      .query(sqlText)
+      .then((result) => {
+          console.log('All items deleted successfully');
+          res.sendStatus(204);
+      })
+      .catch((err) => {
+          console.log('Error in clear request', err);
+          res.sendStatus(500);
+      });
 });
 
 module.exports = router;

@@ -80,7 +80,31 @@ function App() {
       });
   };
 
-  // completedkey ? display something : do nothing
+  const clearTable = () => {
+    axios
+      .delete(`/items/clear`)
+      .then((response) => {
+        getItems();
+      })
+      .catch((err) => {
+        console.log('Error in clearing table', err);
+      })
+  }
+
+  
+  const resetItems = () => {
+    axios
+      .put(`/items/reset`)
+      .then((response) => {
+        getItems(); // Refresh the list after updating
+      })
+      .catch((err) => {
+        alert("Error resetting items");
+
+        alert("Error Marking Item as Purchased");
+        console.log(err);
+      });
+  };
 
   return (
     <div className="App">
@@ -100,13 +124,14 @@ function App() {
           items={itemList}
           markAsPurchased={markAsPurchased}
           deleteItem={deleteItem}
-          // clearTable={clearTable}
-          // resetItems={resetItems}
+          clearTable={clearTable}
+          resetItems={resetItems}
         />
-        <Buttons Buttons={Buttons} />
       </main>
     </div>
   );
+
 }
+
 
 export default App;
