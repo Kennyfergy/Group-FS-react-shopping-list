@@ -51,14 +51,14 @@ The `Reset` button should clear the purchased status from all items, allowing th
 
 ## Stretch Features
 
-||- Update this Readme file to use the [Template](https://github.com/PrimeAcademy/readme-template) and fill in the sections.
+|X|- Update this Readme file to use the [Template](https://github.com/PrimeAcademy/readme-template) and fill in the sections.
 
 |X|- Add a confirmation dialog to the reset and clear button so that when the user clicks, they are prompted to confirm whether they _really_ want to perform that action. (Check out [Sweet Alerts](https://www.npmjs.com/package/@sweetalert/with-react).)
 
 |X|- Add indicators to the UI to show which fields are required. On Save, validate that all inputs have a value.
 |X|- On the client side, you can do this by making the HTML inputs `required`.
 |X| - However you should also do this on the server side and send back a friendly message if the required data is not provided.
-||- Optionally, make sure the text entered isn't too long.
+|X|- Optionally, make sure the text entered isn't too long.
 
 |X|- Improve the styling of the page
 |X|- When items are purchased, grey them out.
