@@ -145,12 +145,14 @@ router.delete("/clear", (req, res) => {
 });
 
 router.put("/edit/:id", (req, res) => {
-  const sqlText = `UPDATE "items" SET "name" = $1, "quantity" = $2, "unit" = $3 WHERE "id' = $4;`;
+  const id = req.params.id;
+  const item = req.body;
+  const sqlText = `UPDATE "items" SET "name" = $1, "quantity" = $2, "unit" = $3 WHERE "id" = $4;`;
 
   pool
-    .query(sqlText, [])
+    .query(sqlText, [item.name, item.quantity, item.unit, id])
     .then((response) => {
-      console.log(`Updated item with id ${id} as purchased`);
+      console.log(`Edited item with id ${id}`);
       res.sendStatus(204);
     })
     .catch((error) => {
