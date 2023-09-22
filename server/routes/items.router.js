@@ -41,7 +41,23 @@ router.post("/", (req, res) => {
       res.sendStatus(500);
     });
 });
-//End post
+
+// Reset purchased status for all items
+router.put('/reset', (req, res) => {
+  const sqlText = `UPDATE "items" SET "completed" = 'false';`;
+
+  pool
+      .query(sqlText)
+      .then((response) => {
+          console.log('All items reset successfully');
+          res.sendStatus(204);
+      })
+      .catch((error) => {
+          console.log(`Error making database query ${sqlText}`, error);
+          res.sendStatus(500);
+      });
+});
+
 
 //put route to update an individual item with id number
 router.put("/update/:id", (req, res) => {
@@ -49,6 +65,10 @@ router.put("/update/:id", (req, res) => {
   const id = req.params.id;
   const sqlText = `UPDATE "items" SET "completed" = 'true' WHERE "id" = $1`;
 
+  if (!id) {
+    res.sendStatus(400);
+    return;
+  }
   pool
     .query(sqlText, [id])
     .then((response) => {
@@ -58,6 +78,22 @@ router.put("/update/:id", (req, res) => {
     .catch((error) => {
       console.log(`Error making database query ${sqlText}`, error);
     });
+});
+
+// Clear all items from the list
+router.delete('/clear', (req, res) => {
+  const sqlText = `DELETE FROM "items";`;
+
+  pool
+      .query(sqlText)
+      .then((result) => {
+          console.log('All items deleted successfully');
+          res.sendStatus(204);
+      })
+      .catch((err) => {
+          console.log('Error in clear request', err);
+          res.sendStatus(500);
+      });
 });
 
 //delete
@@ -76,6 +112,7 @@ router.delete("/delete/:id", (req, res) => {
       res.sendStatus(500);
     });
 });
+
 // Reset purchased status for all items
 router.put("/reset", (req, res) => {
   const sqlText = `UPDATE "items" SET "completed" = 'false';`;
@@ -107,5 +144,6 @@ router.delete("/clear", (req, res) => {
       res.sendStatus(500);
     });
 });
+
 
 module.exports = router;
