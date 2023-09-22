@@ -78,6 +78,29 @@ function App() {
       });
   };
 
+  const clearTable = () => {
+    axios
+      .delete(`/items/clear`)
+      .then((response) => {
+        getItems();
+      })
+      .catch((err) => {
+        console.log('Error in clearing table', err);
+      })
+  }
+  
+  const resetItems = () => {
+    axios
+      .put(`/items/reset`)
+      .then((response) => {
+        getItems(); // Refresh the list after updating
+      })
+      .catch((err) => {
+        alert("Error resetting items");
+        console.log(err);
+      });
+  };
+
   return (
     <div className="App">
       <Header />
@@ -96,8 +119,8 @@ function App() {
           items={itemList}
           markAsPurchased={markAsPurchased}
           deleteItem={deleteItem}
-          // clearTable={clearTable}
-          // resetItems={resetItems}
+          clearTable={clearTable}
+          resetItems={resetItems}
         />
       </main>
     </div>
