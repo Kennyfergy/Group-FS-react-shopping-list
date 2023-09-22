@@ -103,7 +103,7 @@ function App() {
       });
   };
 
-}
+
 // completedkey ? display something : do nothing
 
 return (
@@ -132,5 +132,5 @@ return (
   </div>
 );
 
-
+}
 export default App;
