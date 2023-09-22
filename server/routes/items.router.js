@@ -49,6 +49,10 @@ router.put("/update/:id", (req, res) => {
   const id = req.params.id;
   const sqlText = `UPDATE "items" SET "completed" = 'true' WHERE "id" = $1`;
 
+  if (!id) {
+    res.sendStatus(400);
+    return;
+  }
   pool
     .query(sqlText, [id])
     .then((response) => {
